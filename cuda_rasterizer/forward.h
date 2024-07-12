@@ -60,6 +60,45 @@ namespace FORWARD
 		uint32_t* n_contrib,
 		const float* bg_color,
 		float* out_color);
+
+	///////////////////////////////////////////////////////////////
+	// LightGaussian
+	///////////////////////////////////////////////////////////////
+
+	/**
+	 * @brief 执行渲染操作，并计算每个高斯分布的贡献次数（gaussian_count）和重要性评分（important_score）
+	 * @param grid 网格大小
+	 * @param block 块大小
+	 * @param grid 网格大小
+	 * @param block 块大小
+	 * @param ranges 每个线程块的高斯分布范围
+	 * @param point_list 点列表
+	 * @param W 视图宽度
+	 * @param H 视图高度
+	 * @param points_xy_image 图像坐标
+	 * @param features 特征
+	 * @param conic_opacity 锥体不透明度
+	 * @param final_T 最终 T
+	 * @param n_contrib 贡献次数
+	 * @param bg_color 背景颜色
+	 * @param gaussians_count 高斯分布数量
+	 * @param important_score 重要性评分
+	 * @param out_color 输出颜色
+	*/
+	void count_gaussian(
+		const dim3 grid, dim3 block,
+		const uint2* ranges,
+		const uint32_t* point_list,
+		int W, int H,
+		const float2* points_xy_image,
+		const float* features,
+		const float4* conic_opacity,
+		float* final_T,
+		uint32_t* n_contrib,
+		const float* bg_color,
+		int* gaussians_count,
+		float* important_score,
+		float* out_color);
 }
 
 
